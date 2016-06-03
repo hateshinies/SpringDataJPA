@@ -1,0 +1,26 @@
+
+<div th:include="header :: header"></div>
+<h2 align="center"><b>Загрузить файл</b></h2>
+<div class="section" align="center">
+    <br>
+    <div class="container">
+        <div class="row" align="center">
+            <br>
+            <form class="form-horizontal" action="/upload" method="post" enctype="multipart/form-data">
+                <div class="col-xs-8 col-sm-6">
+                    <label for="text">Фамилия</label>
+                    <input type="text" class="form-inline" id="text" name="name">
+                </div>
+                <br>
+                <div>
+                    <input type="file" id="file" name="file">
+                    <input type="submit" value="Загрузить" class="btn btn-primary btn-lg "><br>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</body>
+</html>
