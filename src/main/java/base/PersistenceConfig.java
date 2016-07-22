@@ -1,9 +1,8 @@
 package base;
 
 import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
@@ -22,13 +21,13 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
-@SpringBootApplication
-public class Application {
+@Configuration
+@EnableTransactionManagement
+@EnableJpaRepositories
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
-   /* @Bean
+public class PersistenceConfig{
+
+    @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
         jpaVendorAdapter.setDatabase(Database.MYSQL);
@@ -72,6 +71,6 @@ public class Application {
                 "root",
                 "root",
                 true);
-    }*/
+    }
 
 }

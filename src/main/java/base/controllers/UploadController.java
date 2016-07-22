@@ -1,13 +1,13 @@
 package base.controllers;
 
 import base.domain.Upload;
-import base.repositories.UploadRepository;
+import base.services.UploadService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartException;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedOutputStream;
@@ -21,7 +21,7 @@ import java.util.Date;
 public class UploadController {
 
     @Autowired
-    private UploadRepository uploadRepository;
+    private UploadService uploadService;
     private int currentId;
 
     @RequestMapping(method = RequestMethod.POST, value = "/upload")
@@ -37,7 +37,7 @@ public class UploadController {
                 upload.setFilename(filename);
                 upload.setFilesize(filesize);
                 upload.setDate(ts);
-                uploadRepository.save(upload);
+                uploadService.saveUpload(upload);
                 currentId = upload.getId();
                 byte[] bytes = file.getBytes();
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("upload-dir/" + currentId)));
@@ -53,7 +53,7 @@ public class UploadController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/success")
     public String showById(Model model) {
-        Upload upload = uploadRepository.findOne(currentId);
+        Upload upload = uploadService.findUploadById(currentId);
         if (upload != null) {
             model.addAttribute("filename", upload.getFilename());
             model.addAttribute("filesize", upload.getFilesize());

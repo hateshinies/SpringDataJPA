@@ -1,7 +1,7 @@
 package base.controllers;
 
 import base.domain.Upload;
-import base.repositories.UploadRepository;
+import base.services.UploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,21 +13,21 @@ import java.io.*;
 
 @Controller
 public class DownloadController {
-    @Autowired
-    private UploadRepository uploadRepository;
 
-    private String uploadId = null;
+    @Autowired
+    private UploadService uploadService;
+//    private String uploadId = null;
 
     @RequestMapping(method = RequestMethod.GET, value = "/uploads")
     public String showAll(Model model) {
-        model.addAttribute("allUploads", uploadRepository.findAll());
+        model.addAttribute("allUploads", uploadService.findUploads());
         return "showAll";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/download/{id}") //value = "/download/{id:[\\d]+}")
+    @RequestMapping(method = RequestMethod.GET, value = "/download/{id}")
     public String handleFileDownload(@PathVariable("id") Integer id) throws IOException {
         try {
-            Upload upload = uploadRepository.findOne(id);
+            Upload upload = uploadService.findUploadById(id);
             String filename = upload.getFilename();
             InputStream is = new FileInputStream(new File("upload-dir/" + id));
             OutputStream out = new BufferedOutputStream(new FileOutputStream(new File("/home/user/" + filename)));

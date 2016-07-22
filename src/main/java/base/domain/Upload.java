@@ -1,12 +1,16 @@
 package base.domain;
 
-import javax.persistence.*;
+import javax.persistence.Id;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "clients")
-public class
-Upload {
+public class Upload {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
