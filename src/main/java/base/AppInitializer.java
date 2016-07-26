@@ -33,17 +33,3 @@ public class AppInitializer implements WebApplicationInitializer {
         dispatcher.addMapping("/");
     }
 }
-//public class AppInitializer implements WebApplicationInitializer {
-//
-//    @Override
-//    public void onStartup(ServletContext container) {
-//        XmlWebApplicationContext appContext = new XmlWebApplicationContext();
-//        appContext.setConfigLocation("/WEB-INF/dispatcher-config.xml");
-//
-//        ServletRegistration.Dynamic dispatcher =
-//                container.addServlet("dispatcher", new DispatcherServlet(appContext));
-//        dispatcher.setLoadOnStartup(1);
-//        dispatcher.addMapping("/");
-//    }
-//
-//}

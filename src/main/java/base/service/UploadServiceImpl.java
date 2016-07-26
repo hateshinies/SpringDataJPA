@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-//@Component("uploadService")
 @Service
 @Transactional
 public class UploadServiceImpl implements UploadService {

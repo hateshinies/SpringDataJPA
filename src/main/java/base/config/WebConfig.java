@@ -10,7 +10,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan("base")
-
 public class WebConfig {
 
     @Bean(name = "jspViewResolver")
@@ -21,8 +20,13 @@ public class WebConfig {
         return resolver;
     }
 
-//    <servlet-mapping>
-//    <servlet>dispatcher</servlet>
-//    <url-pattern>/*</url-pattern>
-//</servlet-mapping>
+
+    /*@Bean
+    public UrlBasedViewResolver setupViewResolver() {
+        UrlBasedViewResolver resolver = new UrlBasedViewResolver();
+        resolver.setPrefix("/WEB-INF/pages/");
+        resolver.setSuffix(".jsp");
+        resolver.setViewClass(JstlView.class);
+        return resolver;
+    }*/
 }
