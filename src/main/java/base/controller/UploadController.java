@@ -1,4 +1,4 @@
-package base.controllers;
+package base.controller;
 
 import base.domain.Upload;
 import base.services.UploadService;

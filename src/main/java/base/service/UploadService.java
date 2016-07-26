@@ -1,7 +1,6 @@
-package base.services;
+package base.service;
 
 import base.domain.Upload;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

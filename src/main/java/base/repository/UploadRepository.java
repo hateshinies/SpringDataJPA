@@ -1,4 +1,4 @@
-package base.repositories;
+package base.repository;
 
 import base.domain.Upload;
 import org.springframework.data.repository.CrudRepository;

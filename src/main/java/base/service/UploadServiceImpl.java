@@ -1,16 +1,15 @@
-package base.services;
+package base.service;
 
 import base.domain.Upload;
-import base.repositories.UploadRepository;
+import base.repository.UploadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import java.util.List;
 
-@Component("uploadService")
-//@Service
+//@Component("uploadService")
+@Service
 @Transactional
 public class UploadServiceImpl implements UploadService {
 
