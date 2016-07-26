@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -18,17 +17,9 @@ public class DispatcherConfig extends WebMvcConfigurerAdapter {
     ViewResolver internalViewResolver() {
         // the view resolver bean ...
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/");
+        resolver.setPrefix("webapp/WEB-INF/views");
         resolver.setSuffix(".jsp");
         return resolver;
     }
 
-    // config static resources
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // Don't forget the ending "/" for location or you will hit 404.
-        registry.addResourceHandler("/img/**").addResourceLocations("/static/images/");
-        registry.addResourceHandler("/js/**").addResourceLocations("/static/js/");
-        registry.addResourceHandler("/css/**").addResourceLocations("/static/css/");
-    }
 }
