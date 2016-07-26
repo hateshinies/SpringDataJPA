@@ -2,7 +2,6 @@ package base.service;
 
 import base.domain.Upload;
 import base.repository.UploadRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +12,7 @@ import java.util.List;
 @Transactional
 public class UploadServiceImpl implements UploadService {
 
-    @Autowired
+//    @Autowired
     private UploadRepository uploadRepository;
 
     @Override
