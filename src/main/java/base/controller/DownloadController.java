@@ -16,10 +16,11 @@ public class DownloadController {
 
     @Autowired
     private UploadService uploadService;
-//    private String uploadId = null;
 
     @RequestMapping(method = RequestMethod.GET, value = "/uploads")
     public String showAll(Model model) {
+        boolean uploadsExistence = uploadService.findUploads().isEmpty();
+        if (uploadsExistence) return "showEmp";
         model.addAttribute("allUploads", uploadService.findUploads());
         return "showAll";
     }

@@ -1,16 +1,16 @@
-<footer class="section section-primary" id="block-4">
-    <div class="container">
+<footer class="section section-primary" id="block-4" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container" align="center">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-center">Информация</h1>
+                <h4 class="text-center">footer</h4>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6 col-md-4">
                 <div class="col-md-12">
-                    <p class="text-left">Контакты:
-                        <br>+7 (905) 677-81-13
-                       </p>
+                    <p class="text-left">Discover more:
+                        <br><a th:href="@{https://github.com/hateshinies?tab=repositories}" th:text="@{Github projects}"></a>
+                    </p>
                 </div>
             </div>
             <div class="col-md-4">
@@ -20,7 +20,7 @@
                 </p>
             </div>
             <div class="col-md-4">
-                <p class="text-left"><br>Очень приятно, что наш сайт оказался полезен :)</p>
+                <p class="text-left"><br>We are glad to be helpful</p>
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 <div th:replace="header :: header"></div>
 <body>
-<h2 align="center">Файл загружен успешно!</h2><br>
-<h4 align="center">Информация о текущей загрузке:</b></h4>
+<h2 align="center">File successfully uploaded!</h2><br>
+<h4 align="center">Upload info:</b></h4>
 <div class="section" align="center">
     <div class="container">
         <div class="row" align="center">
@@ -10,11 +10,12 @@
                     <table border="1" align="center" cellspacing="0" cellpadding="10">
                         <thead>
                         <tr>
-                            <th>Имя файла</th>
-                            <th>Размер</th>
+                            <th>Filename</th>
+                            <th>Filesize</th>
                             <th>ID</th>
-                            <th>Фамилия</th>
-                            <th>Дата</th>
+                            <th>Surname</th>
+                            <th>Date</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -24,6 +25,7 @@
                             <td><p th:text="${id}"/></td>
                             <td><p th:text="${name}"/></td>
                             <td><p th:text="${date}"/></td>
+                            <td<a th:href="@{'/remove/' + ${id}}" th:text="remove"></a></td>
                         </tr>
                         </tbody>
                     </table>
@@ -35,4 +37,5 @@
     </div>
 </div>
 </body>
+<div th:include="footer :: footer"></div>
 </html>

@@ -1,6 +1,5 @@
-
-<div th:include="header :: header"></div>
-<h2 align="center"><b>Загрузить файл</b></h2>
+<div th:include="header :: header" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"></div>
+<h2 align="center"><b>Upload a file</b></h2>
 <div class="section" align="center">
     <br>
     <div class="container">
@@ -8,13 +7,13 @@
             <br>
             <form class="form-horizontal" action="/upload" method="post" enctype="multipart/form-data">
                 <div class="col-xs-8 col-sm-6">
-                    <label for="text">Фамилия</label>
+                    <label for="text">Surname</label>
                     <input type="text" class="form-inline" id="text" name="name">
                 </div>
                 <br>
                 <div>
                     <input type="file" id="file" name="file">
-                    <input type="submit" value="Загрузить" class="btn btn-primary btn-lg "><br>
+                    <input type="submit" value="Upload" class="btn btn-primary btn-lg "><br>
                 </div>
             </form>
         </div>
@@ -23,4 +22,5 @@
 </div>
 </div>
 </body>
+<div th:include="footer :: footer"></div>
 </html>

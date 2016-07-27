@@ -12,4 +12,9 @@ public interface UploadService {
 
     void saveUpload(Upload upload);
 
+    void removeUpload(Integer id);
+
+    void removeUploads();
+
+    boolean exists(Integer id);
 }

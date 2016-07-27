@@ -6,8 +6,8 @@
 </head>
 <div th:include="header :: header"></div>
 <body>
-<h2 align="center">Выберите файл, чтобы скачать</h2><br>
-<h4 align="center">Информация о загрузках:</b></h4>
+<h2 align="center">Choose file to download</h2><br>
+<h4 align="center">Uploads info:</b></h4>
 <div class="section" align="center">
     <div class="container">
         <div class="row" align="center">
@@ -16,21 +16,22 @@
                     <table border="1" align="center" cellspacing="0" cellpadding="10">
                         <thead>
                         <tr>
-                            <th>Фамилия</th>
+                            <th>Surname</th>
                             <th>ID</th>
-                            <th>Имя файла</th>
-                            <th>Размер</th>
-                            <th>Дата</th>
+                            <th>Filename</th>
+                            <th>Filesize</th>
+                            <th>Date</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="upload : ${allUploads}">
                             <td th:text="${upload.name}"></td>
                             <td th:text="${upload.id}"></td>
-                            <!--<td href="@{/download/{allUploads.id}/}" th:text="${upload.filename}"></td>-->
                             <td<a th:href="@{'/download/' + ${upload.id}}" th:text="${upload.filename}"></a></td>
                             <td th:text="${upload.filesize}"></td>
                             <td th:text="${upload.date}"></td>
+                            <td<a th:href="@{'/remove/' + ${upload.id}}" th:text="remove"></a></td>
                         </tr>
                         </tbody>
                     </table>
@@ -42,4 +43,5 @@
     </div>
 </div>
 </body>
+<div th:include="footer :: footer"></div>
 </html>

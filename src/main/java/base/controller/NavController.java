@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class FrontController {
+public class NavController {
 
     @RequestMapping("/")
-    public String root() {
-        return "welcome";
+    public String front() {
+        return "uploadForm";
     }
 }

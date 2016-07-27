@@ -23,8 +23,7 @@ import java.util.Map;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories
-
+@EnableJpaRepositories("base.repository")
 public class ApplicationConfig {
 
     @Bean
@@ -44,8 +43,8 @@ public class ApplicationConfig {
         lemfb.setJpaDialect(new HibernateJpaDialect());
         lemfb.setValidationMode(ValidationMode.CALLBACK);
         Map<String, String> props = new HashMap<>();
-        props.put("connection.driver_class", "com.mysql.jdbc.Driver");
-        props.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        props.put("connection.driver_class", "org.h2.Driver");
+        props.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
         props.put("hibernate.show_sql", "false");
         props.put("hibernate.format_sql", "true");
         props.put("hibernate.use_sql_comments", "false");
@@ -67,7 +66,7 @@ public class ApplicationConfig {
     @Bean
     public DataSource dataSource() {
         return new SingleConnectionDataSource(
-                "jdbc:mysql://localhost:3306/upload?profileSQL=true",
+                "jdbc:h2:mem:AZ/upload",
                 "root",
                 "root",
                 true);
