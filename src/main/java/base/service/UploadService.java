@@ -1,7 +1,9 @@
 package base.service;
 
 import base.domain.Upload;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public interface UploadService {
@@ -17,4 +19,8 @@ public interface UploadService {
     void removeUploads();
 
     boolean exists(Integer id);
+
+    boolean uploadFile(MultipartFile file, int id);
+
+    boolean downloadFile(Upload upload, HttpServletResponse response);
 }
