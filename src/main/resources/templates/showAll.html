@@ -29,7 +29,7 @@
                             <td th:text="${upload.name}"></td>
                             <td th:text="${upload.id}"></td>
                             <td<a th:href="@{'/download/' + ${upload.id}}" th:text="${upload.filename}"></a></td>
-                            <td th:text="${upload.filesize}"></td>
+                            <td th:text="${upload.filesize} +  Bytes"></td>
                             <td th:text="${upload.date}"></td>
                             <td<a th:href="@{'/remove/' + ${upload.id}}" th:text="remove"></a></td>
                         </tr>

@@ -7,11 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -20,7 +16,11 @@ import java.util.List;
 @Transactional
 public class UploadServiceImpl implements UploadService {
 
-    private final String ROOT = new File("").getAbsolutePath() + "\\upload-dir";
+    private final String CUR_ROOT = new File("").getAbsolutePath();
+    private final String WIN_DIR = "\\upload-dir";
+    private final String WIN_HOME = "";
+    private final String UNIX_DIR = "/upload-dir/";
+    private final String UNIX_HOME = "/home/user/";
 
     @Autowired
     private UploadRepository uploadRepository;
@@ -46,36 +46,38 @@ public class UploadServiceImpl implements UploadService {
     }
 
     @Override
-    public void removeUploads() {
-        uploadRepository.deleteAll();
-    }
-
-    @Override
     public boolean exists(Integer id) {
         return uploadRepository.exists(id);
     }
 
-    @Override
     public boolean uploadFile(MultipartFile file, int id) {
         if (file.isEmpty()) return false;
+        File checkedFile = new File(CUR_ROOT + UNIX_DIR + id);
+        if (checkedFile.exists()) checkedFile.delete();
         try {
-            Files.copy(file.getInputStream(), Paths.get(ROOT, String.valueOf(id)));
-            return true;
+            Files.copy(file.getInputStream(), Paths.get(CUR_ROOT + UNIX_DIR, String.valueOf(id)));
         } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
+        return true;
     }
 
-    @Override
-    public boolean downloadFile(Upload upload, HttpServletResponse response) {
+    public boolean downloadFile(Upload upload) {
         try {
-            InputStream is = new FileInputStream(ROOT + upload.getId());
-            org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
-            response.flushBuffer();
+            InputStream is = new FileInputStream(CUR_ROOT + UNIX_DIR + upload.getId());
+            OutputStream out = new BufferedOutputStream(new FileOutputStream(new File(UNIX_HOME + upload.getFilename())));
+            byte[] outputByte = new byte[1024];
+            while (is.read(outputByte, 0, 1024) != -1) {
+                out.write(outputByte, 0, 1024);
+            }
+            is.close();
+            out.close();
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
         return true;
     }
+
 }

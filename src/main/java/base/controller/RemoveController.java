@@ -19,7 +19,7 @@ public class RemoveController {
     @RequestMapping(method = RequestMethod.GET, value = "/remove/{id}")
     public String removeUpload(@PathVariable("id") Integer id) {
         boolean uploadExist = uploadService.exists(id);
-        if (!uploadExist) return "front";
+        if (!uploadExist) return "uploadForm";
         uploadService.removeUpload(id);
         File upload = new File("upload-dir/" + id);
         if(upload.exists()) upload.delete();
