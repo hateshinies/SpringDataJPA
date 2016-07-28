@@ -1,6 +1,5 @@
 package base.controller;
 
-import base.domain.Upload;
 import base.service.UploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class NavController {
+public class NavigationController {
     @Autowired
     private UploadService uploadService;
 
@@ -28,9 +27,7 @@ public class NavController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/upload/{id}")
     public String showById(Model model, @PathVariable("id") Integer id) {
-        Upload upload = uploadService.findUploadById(id);
-        if (upload != null)
-            model.addAttribute(upload);
+            model.addAttribute(uploadService.findUploadById(id));
         return "showOne";
     }
 }
